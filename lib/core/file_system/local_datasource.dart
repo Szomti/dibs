@@ -26,6 +26,7 @@ abstract class LocalDatasource<T extends Object> {
     final file = await getStorageFile();
     if (!(await file.exists())) return null;
     final content = await file.readAsString();
+    if (content.isEmpty) return {};
     return json.decode(content);
   }
 

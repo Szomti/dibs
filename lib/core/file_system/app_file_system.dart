@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 final class AppFileSystem {
   static final AppFileSystem instance = AppFileSystem._();
 
-  final _storageDirectoryName = 'LocalStorage';
+  final _storageDirectoryName = 'local_storage';
 
   AppFileSystem._();
 

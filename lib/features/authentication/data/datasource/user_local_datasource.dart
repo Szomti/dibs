@@ -7,7 +7,7 @@ final class UserLocalDatasource extends LocalDatasource<UserDto> {
   @override
   Future<UserDto?> read() async {
     final jsonObject = await readFromFile();
-    if (jsonObject == null) return null;
+    if (jsonObject == null || jsonObject.isEmpty) return null;
     return UserDto.fromJson(jsonObject);
   }
 
