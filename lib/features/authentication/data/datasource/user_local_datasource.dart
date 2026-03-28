@@ -1,6 +1,5 @@
-import 'package:dibs/features/authentication/authentication.dart';
-
 import '../../../../core/file_system/local_datasource.dart';
+import '../dto/user_dto.dart';
 
 final class UserLocalDatasource extends LocalDatasource<UserDto> {
   UserLocalDatasource() : super(fileName: 'user');
