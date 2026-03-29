@@ -3,8 +3,6 @@ import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../shared/widgets/custom_text_form_field.dart';
-
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key});
 
@@ -27,7 +25,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(loginProvider);
+    final login = ref.watch(loginProvider);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: _borderRadius),
       child: Padding(
@@ -36,71 +34,55 @@ class _LoginFormState extends ConsumerState<LoginForm> {
           key: _formKey,
           child: Column(
             children: [
-              const Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Good to see you!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24),
-                    ),
-                  ),
-                ],
-              ),
+              _createHeader(),
               const SizedBox(height: sizeMd),
-              CustomTextFormField(
-                enabled: !loginState.isLoading,
-                labelText: 'Email',
-                controller: _emailController,
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) return 'Field is empty';
-                  final RegExp emailRegex = RegExp(
-                    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-                  );
-                  if (!emailRegex.hasMatch(value)) return "Invalid email";
-                  return null;
-                },
-              ),
+              EmailField(!login.isLoading, _emailController),
               const SizedBox(height: sizeMd),
-              CustomTextFormField(
-                enabled: !loginState.isLoading,
-                labelText: 'Password',
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) return 'Field is empty';
-                  if (value.length < 8) {
-                    return 'Minimum 8 characters';
-                  }
-                  return null;
-                },
-                controller: _passwordController,
-              ),
+              PasswordField(!login.isLoading, _passwordController),
               const SizedBox(height: sizeMd),
-              Row(
-                children: [
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: !loginState.isLoading
-                          ? () {
-                              final formState = _formKey.currentState;
-                              if (formState == null || !formState.validate())
-                                return;
-                              ref
-                                  .read(loginProvider.notifier)
-                                  .login(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  );
-                            }
-                          : null,
-                      child: const Text('Login'),
-                    ),
-                  ),
-                ],
-              ),
+              _createLoginBtn(!login.isLoading),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _createHeader() {
+    return const Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Good to see you!',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _createLoginBtn(bool enabled) {
+    return Row(
+      children: [
+        Expanded(
+          child: FilledButton(
+            onPressed: enabled ? () => _loginPressed(ref) : null,
+            child: const Text('Login'),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _loginPressed(WidgetRef ref) {
+    final formState = _formKey.currentState;
+    if (formState == null || !formState.validate()) return;
+    ref
+        .read(loginProvider.notifier)
+        .login(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
   }
 }

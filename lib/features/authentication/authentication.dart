@@ -4,3 +4,7 @@ export 'presentation/pages/login_page.dart';
 export 'presentation/pages/register_page.dart';
 export 'presentation/providers/login_provider.dart';
 export 'presentation/providers/register_provider.dart';
+export 'presentation/widgets/password_field.dart';
+export 'presentation/widgets/email_field.dart';
+export 'presentation/widgets/name_field.dart';
+export 'presentation/widgets/confirm_password_field.dart';

@@ -4,6 +4,7 @@ import 'package:dibs/features/authentication/authentication.dart';
 import 'package:dibs/features/authentication/data/datasource/user_local_datasource.dart';
 import 'package:dibs/features/authentication/data/datasource/user_remote_datasource.dart';
 import 'package:dibs/features/authentication/data/dto/login_dto.dart';
+import 'package:dibs/features/authentication/data/dto/register_dto.dart';
 import 'package:dibs/features/authentication/data/mappers/user_mapper.dart';
 
 import '../dto/user_dto.dart';
@@ -33,6 +34,14 @@ class UserRepositoryImpl extends UserRepository {
     await _localDatasource.write(userDto);
     _setCache(userDto);
     return _cache!;
+  }
+
+  @override
+  Future<bool> register(String name, String email, String password) async {
+    await _remoteDatasource.register(
+      RegisterDto(name: name, email: email, password: password),
+    );
+    return true;
   }
 
   void _setCache(UserDto? userDto) {

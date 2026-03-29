@@ -10,12 +10,14 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? labelText;
   final bool enabled;
+  final bool obscureText;
 
   const CustomTextFormField({
     super.key,
     this.controller,
     this.validator,
     this.enabled = true,
+    this.obscureText = false,
     this.labelText,
   });
 
@@ -26,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
       onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       validator: validator,
       enabled: enabled,
+      obscureText: obscureText,
       decoration: InputDecoration(labelText: labelText, border: _border),
     );
   }

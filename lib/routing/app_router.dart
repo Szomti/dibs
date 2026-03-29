@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/authentication/presentation/providers/user_repository_provider.dart';
+import '../features/home/home.dart';
 
 class AuthChangeNotifier extends ChangeNotifier {
   AuthChangeNotifier(Stream<User?> stream) {
@@ -35,7 +36,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/auth/login', builder: (_, _) => const LoginPage()),
       GoRoute(path: '/auth/register', builder: (_, _) => const RegisterPage()),
-      GoRoute(path: '/app/home', builder: (_, _) => const RegisterPage()),
+      GoRoute(path: '/app/home', builder: (_, _) => const HomePage()),
     ],
   );
 });

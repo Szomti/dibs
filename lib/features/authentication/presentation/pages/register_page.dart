@@ -37,34 +37,40 @@ class _RegisterPageState extends State<RegisterPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
           children: [
             DotPatternPainter.buildBackgroundWidget(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: paddingMd),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: RotationTransition(
-                        turns: _animation,
-                        child: const Text(
-                          'Dibs!',
-                          style: TextStyle(
-                            fontSize: 56,
-                            overflow: TextOverflow.visible,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: paddingMd),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: sizeSm),
+                        RotationTransition(
+                          turns: _animation,
+                          child: const Text(
+                            'Dibs!',
+                            style: TextStyle(
+                              fontSize: 56,
+                              overflow: TextOverflow.visible,
+                            ),
                           ),
                         ),
-                      ),
+                        const SizedBox(height: sizeLg),
+                        const RegisterForm(),
+                      ],
                     ),
                   ),
-                  const RegisterForm(),
-                  const Spacer(),
-                ],
-              ),
+                );
+              },
             ),
           ],
         ),

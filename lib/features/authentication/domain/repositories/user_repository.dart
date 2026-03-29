@@ -6,4 +6,6 @@ abstract class UserRepository {
   Future<User?> getUser();
 
   Future<User> login(String email, String password);
+
+  Future<bool> register(String name, String email, String password);
 }
