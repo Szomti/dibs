@@ -5,5 +5,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final userProvider = StreamProvider<User?>((ref) async* {
   final repo = ref.read(userRepositoryProvider);
   yield await repo.getUser();
-  yield* ref.read(userRepositoryProvider).userStream;
+  yield* repo.userStream;
 });

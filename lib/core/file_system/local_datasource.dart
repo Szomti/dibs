@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dibs/core/file_system/app_file_system.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class LocalDatasource<T extends Object> {
   final String fileName;
@@ -23,11 +24,16 @@ abstract class LocalDatasource<T extends Object> {
   }
 
   Future<Map<String, Object?>?> readFromFile() async {
-    final file = await getStorageFile();
-    if (!(await file.exists())) return null;
-    final content = await file.readAsString();
-    if (content.isEmpty) return {};
-    return json.decode(content);
+    try {
+      final file = await getStorageFile();
+      if (!(await file.exists())) return null;
+      final content = await file.readAsString();
+      if (content.isEmpty) return null;
+      return json.decode(content);
+    } catch (error, stackTrace) {
+      debugPrint('$error\n$stackTrace');
+      return null;
+    }
   }
 
   Future<void> writeToFile(Map<String, Object?> jsonObject) async {

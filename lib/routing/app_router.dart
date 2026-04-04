@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/authentication/presentation/providers/user_repository_provider.dart';
-import '../features/home/home.dart';
+import '../features/locations/locations.dart';
+import '../features/navigation_shell/navigation_shell.dart';
 
 class AuthChangeNotifier extends ChangeNotifier {
   AuthChangeNotifier(Stream<User?> stream) {
@@ -29,14 +30,34 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final isOnAuth = state.matchedLocation.startsWith('/auth');
       final isOnLoading = state.matchedLocation == '/';
 
-      if (isLoggedIn && (isOnAuth || isOnLoading)) return '/app/home';
+      if (isLoggedIn && (isOnAuth || isOnLoading)) return '/app/locations';
       if (!isLoggedIn && !isOnAuth) return '/auth/login';
       return null;
     },
     routes: [
       GoRoute(path: '/auth/login', builder: (_, _) => const LoginPage()),
       GoRoute(path: '/auth/register', builder: (_, _) => const RegisterPage()),
-      GoRoute(path: '/app/home', builder: (_, _) => const HomePage()),
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, navShell) => NavigationShellPage(navShell),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/app/locations',
+                builder: (_, _) => const LocationsPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/app/locations',
+                builder: (_, _) => const LocationsPage(),
+              ),
+            ],
+          ),
+        ],
+      ),
     ],
   );
 });
