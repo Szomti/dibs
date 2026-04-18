@@ -1,4 +1,4 @@
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +11,9 @@ class LoginForm extends ConsumerStatefulWidget {
 }
 
 class _LoginFormState extends ConsumerState<LoginForm> {
-  final _borderRadius = const BorderRadius.all(Radius.circular(defaultRadius));
+  static const _cardShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(dims.defaultRadius)),
+  );
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -27,20 +29,20 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   Widget build(BuildContext context) {
     final login = ref.watch(loginProvider);
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+      shape: _cardShape,
       child: Padding(
-        padding: const EdgeInsets.all(paddingMd),
+        padding: const EdgeInsets.all(dims.sizeMd),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              _createHeader(),
-              const SizedBox(height: sizeMd),
-              EmailField(!login.isLoading, _emailController),
-              const SizedBox(height: sizeMd),
-              PasswordField(!login.isLoading, _passwordController),
-              const SizedBox(height: sizeMd),
-              _createLoginBtn(!login.isLoading),
+              const _LoginHeader(),
+              const SizedBox(height: dims.sizeMd),
+              switch (login) {
+                AsyncLoading<User?>() => const AuthCircularLoading(),
+                AsyncData<User?>() => _createForm(),
+                AsyncError<User?>(:final error) => _createForm('$error'),
+              },
             ],
           ),
         ),
@@ -48,26 +50,28 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     );
   }
 
-  Widget _createHeader() {
-    return const Row(
+  Widget _createForm([String? error]) {
+    return Column(
       children: [
-        Expanded(
-          child: Text(
-            'Good to see you!',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 24),
-          ),
-        ),
+        EmailField(_emailController),
+        const SizedBox(height: dims.sizeMd),
+        PasswordField(_passwordController),
+        const SizedBox(height: dims.sizeMd),
+        _createLoginBtn(),
+        if (error != null) ...[
+          const SizedBox(height: dims.sizeMd),
+          Text(error),
+        ],
       ],
     );
   }
 
-  Widget _createLoginBtn(bool enabled) {
+  Widget _createLoginBtn() {
     return Row(
       children: [
         Expanded(
           child: FilledButton(
-            onPressed: enabled ? () => _loginPressed(ref) : null,
+            onPressed: () => _loginPressed(ref),
             child: const Text('Login'),
           ),
         ),
@@ -84,5 +88,24 @@ class _LoginFormState extends ConsumerState<LoginForm> {
           email: _emailController.text,
           password: _passwordController.text,
         );
+  }
+}
+
+class _LoginHeader extends StatelessWidget {
+  const _LoginHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Good to see you!',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ],
+    );
   }
 }

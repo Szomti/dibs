@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../features/authentication/presentation/providers/user_repository_provider.dart';
 import '../features/locations/locations.dart';
 import '../features/navigation_shell/navigation_shell.dart';
+import '../features/settings/settings.dart';
 
 class AuthChangeNotifier extends ChangeNotifier {
   AuthChangeNotifier(Stream<User?> stream) {
@@ -69,6 +70,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/app/reservations',
                 builder: (_, _) => const CategoriesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/app/settings',
+                builder: (_, _) => const SettingsPage(),
               ),
             ],
           ),

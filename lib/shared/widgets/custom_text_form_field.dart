@@ -1,9 +1,9 @@
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   static const _border = OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(marginXl)),
+    borderRadius: BorderRadius.all(Radius.circular(dims.sizeXl)),
   );
 
   final TextEditingController? controller;

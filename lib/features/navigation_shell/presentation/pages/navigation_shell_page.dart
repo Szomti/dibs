@@ -28,6 +28,10 @@ class NavigationShellPage extends StatelessWidget {
             icon: Icon(Symbols.bookmarks_rounded),
             label: 'Reservations',
           ),
+          NavigationDestination(
+            icon: Icon(Symbols.settings),
+            label: 'Settings',
+          ),
         ],
       ),
     );

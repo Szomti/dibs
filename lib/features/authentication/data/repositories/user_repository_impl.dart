@@ -40,6 +40,13 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
+  Future<void> logout() async {
+    await _remoteDatasource.logout();
+    _setCache(null);
+    await _localDatasource.delete();
+  }
+
+  @override
   Future<User> register(
     String name,
     String email,

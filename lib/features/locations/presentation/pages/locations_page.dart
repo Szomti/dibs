@@ -1,12 +1,21 @@
 import 'package:country_flags/country_flags.dart';
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // TODO: Actual screen with data from server
 class LocationsPage extends ConsumerWidget {
-  final places = const ['ETI - Lab C1', 'ETI - Lab C2', 'ETI - Lab D', 'ETI - Lab E', 'WMECH - Lab M1', 'WMECH - Lab M2', 'CNT - Nano Lab', 'GUT Library - Computer Room'];
+  final places = const [
+    'ETI - Lab C1',
+    'ETI - Lab C2',
+    'ETI - Lab D',
+    'ETI - Lab E',
+    'WMECH - Lab M1',
+    'WMECH - Lab M2',
+    'CNT - Nano Lab',
+    'GUT Library - Computer Room',
+  ];
   final int categoryId;
 
   const LocationsPage({required this.categoryId, super.key});
@@ -29,7 +38,7 @@ class LocationsPage extends ConsumerWidget {
                   _createLocation(5),
                   _createLocation(6),
                   _createLocation(7),
-                  const SizedBox(height: sizeSm),
+                  const SizedBox(height: dims.sizeSm),
                 ],
               ),
             ),
@@ -41,9 +50,12 @@ class LocationsPage extends ConsumerWidget {
 
   Widget _createLocation(int index) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: sizeMd, vertical: sizeSm),
+      margin: const EdgeInsets.symmetric(
+        horizontal: dims.sizeMd,
+        vertical: dims.sizeSm,
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(sizeMd),
+        padding: const EdgeInsets.all(dims.sizeMd),
         child: Row(
           children: [
             Expanded(
@@ -59,7 +71,7 @@ class LocationsPage extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: sizeXs),
+                  const SizedBox(height: dims.sizeXs),
                   Row(
                     children: [
                       CountryFlag.fromCountryCode(
@@ -70,20 +82,17 @@ class LocationsPage extends ConsumerWidget {
                           shape: Circle(),
                         ),
                       ),
-                      const SizedBox(width: sizeSm),
+                      const SizedBox(width: dims.sizeSm),
                       const Expanded(
-                        child: Text(
-                          'Poland',
-                          style: TextStyle(fontSize: 14),
-                        ),
+                        child: Text('Poland', style: TextStyle(fontSize: 14)),
                       ),
                     ],
                   ),
-                  const SizedBox(height: sizeXs),
+                  const SizedBox(height: dims.sizeXs),
                   const Row(
                     children: [
                       Icon(Symbols.location_on, size: 20),
-                      SizedBox(width: sizeSm),
+                      SizedBox(width: dims.sizeSm),
                       Expanded(
                         child: Column(
                           children: [
@@ -115,7 +124,7 @@ class LocationsPage extends ConsumerWidget {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, size: sizeLg),
+            const Icon(Icons.arrow_forward_ios, size: dims.sizeLg),
           ],
         ),
       ),

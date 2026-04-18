@@ -5,10 +5,8 @@ import '../../../../shared/widgets/custom_text_form_field.dart';
 class ConfirmPasswordField extends StatelessWidget {
   final TextEditingController fieldController;
   final TextEditingController passwordController;
-  final bool enabled;
 
   const ConfirmPasswordField({
-    required this.enabled,
     required this.fieldController,
     required this.passwordController,
     super.key,
@@ -17,7 +15,6 @@ class ConfirmPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      enabled: enabled,
       labelText: 'Confirm Password',
       obscureText: true,
       controller: fieldController,

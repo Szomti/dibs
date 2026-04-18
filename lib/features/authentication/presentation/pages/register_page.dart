@@ -1,39 +1,14 @@
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:dibs/features/authentication/presentation/widgets/register_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/widgets/dot_pattern_painter.dart';
+import '../../authentication.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    )..repeat(reverse: true);
-    _animation = Tween<double>(
-      begin: -0.07,
-      end: -0.03,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  static const _padding = EdgeInsets.symmetric(horizontal: dims.sizeMd);
 
   @override
   Widget build(BuildContext context) {
@@ -45,27 +20,18 @@ class _RegisterPageState extends State<RegisterPage>
             LayoutBuilder(
               builder: (context, constraints) {
                 return SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: paddingMd),
+                  padding: _padding,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       minHeight: constraints.maxHeight,
                     ),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: sizeSm),
-                        RotationTransition(
-                          turns: _animation,
-                          child: const Text(
-                            'Dibs!',
-                            style: TextStyle(
-                              fontSize: 56,
-                              overflow: TextOverflow.visible,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: sizeLg),
-                        const RegisterForm(),
+                        SizedBox(height: dims.sizeSm),
+                        AnimatedTitle(),
+                        SizedBox(height: dims.sizeLg),
+                        RegisterForm(),
                       ],
                     ),
                   ),

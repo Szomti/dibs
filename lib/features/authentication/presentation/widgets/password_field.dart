@@ -4,14 +4,12 @@ import '../../../../shared/widgets/custom_text_form_field.dart';
 
 class PasswordField extends StatelessWidget {
   final TextEditingController controller;
-  final bool enabled;
 
-  const PasswordField(this.enabled, this.controller, {super.key});
+  const PasswordField(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      enabled: enabled,
       labelText: 'Password',
       controller: controller,
       obscureText: true,

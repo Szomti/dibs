@@ -18,6 +18,12 @@ abstract class LocalDatasource<T extends Object> {
 
   Future<void> write(T object);
 
+  Future<void> delete() async {
+    final file = await getStorageFile();
+    if (!(file.existsSync())) return;
+    await file.delete();
+  }
+
   Future<File> getStorageFile() async {
     final directory = await storageDir;
     return File('${directory.path}/$fullFileName');
@@ -26,7 +32,7 @@ abstract class LocalDatasource<T extends Object> {
   Future<Map<String, Object?>?> readFromFile() async {
     try {
       final file = await getStorageFile();
-      if (!(await file.exists())) return null;
+      if (!(file.existsSync())) return null;
       final content = await file.readAsString();
       if (content.isEmpty) return null;
       return json.decode(content);

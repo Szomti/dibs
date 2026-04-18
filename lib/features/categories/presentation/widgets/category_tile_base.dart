@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import '../../../../core/constants/app_dimensions.dart';
+import '../../../../core/constants/app_dimensions.dart' as dims;
 
 class CategoryTileBase extends StatelessWidget {
   final int? id;
@@ -28,7 +28,7 @@ class CategoryTileBase extends StatelessWidget {
 
   Widget _createContentWithTooltip(BuildContext context) {
     return Tooltip(
-      margin: const EdgeInsets.symmetric(horizontal: sizeMd),
+      margin: const EdgeInsets.symmetric(horizontal: dims.sizeMd),
       message: description,
       child: _createContent(context),
     );
@@ -39,8 +39,8 @@ class CategoryTileBase extends StatelessWidget {
       onTap: id != null ? () => context.go('/app/categories/$id') : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: sizeMd,
-          vertical: sizeSm,
+          horizontal: dims.sizeMd,
+          vertical: dims.sizeSm,
         ),
         child: Row(
           children: [

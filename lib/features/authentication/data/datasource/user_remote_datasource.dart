@@ -3,7 +3,7 @@ import 'package:dibs/features/authentication/data/dto/register_dto.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/network/remote_datasource.dart';
-import '../../../../core/network/urls.dart';
+import '../../../../core/network/urls.dart' as urls;
 import '../dto/user_response_dto.dart';
 
 final class UserRemoteDatasource extends RemoteDatasource {
@@ -12,7 +12,7 @@ final class UserRemoteDatasource extends RemoteDatasource {
   Future<UserResponseDto> login(LoginDto loginDto) async {
     try {
       final response = await dio.post<Map<String, Object?>>(
-        loginPath,
+        urls.loginPath,
         data: loginDto.toJson(),
         options: jsonOptions,
       );
@@ -25,10 +25,22 @@ final class UserRemoteDatasource extends RemoteDatasource {
     }
   }
 
+  Future<void> logout() async {
+    try {
+      await dio.post<Map<String, Object?>>(
+        urls.logoutPath,
+        options: jsonOptions,
+      );
+    } on DioException catch (e) {
+      // TODO: Custom exceptions
+      rethrow;
+    }
+  }
+
   Future<UserResponseDto> register(RegisterDto registerDto) async {
     try {
       final response = await dio.post<Map<String, Object?>>(
-        registerPath,
+        urls.registerPath,
         data: registerDto.toJson(),
         options: jsonOptions,
       );

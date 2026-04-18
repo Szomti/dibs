@@ -8,3 +8,5 @@ export 'presentation/widgets/password_field.dart';
 export 'presentation/widgets/email_field.dart';
 export 'presentation/widgets/name_field.dart';
 export 'presentation/widgets/confirm_password_field.dart';
+export 'presentation/widgets/animated_title.dart';
+export 'presentation/widgets/auth_circular_loading.dart';

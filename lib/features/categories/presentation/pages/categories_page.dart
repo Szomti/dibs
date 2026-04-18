@@ -1,4 +1,4 @@
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:dibs/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +8,11 @@ import '../../categories.dart';
 import '../../domain/entities/categories.dart';
 
 class CategoriesPage extends ConsumerWidget {
+  static const _padding = EdgeInsets.symmetric(
+    vertical: dims.sizeXs,
+    horizontal: dims.sizeMd,
+  );
+
   const CategoriesPage({super.key});
 
   @override
@@ -17,10 +22,7 @@ class CategoriesPage extends ConsumerWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: sizeXs,
-              horizontal: sizeMd,
-            ),
+            padding: _padding,
             child: SearchBar(
               onTapOutside: (_) =>
                   FocusManager.instance.primaryFocus?.unfocus(),
@@ -29,48 +31,69 @@ class CategoriesPage extends ConsumerWidget {
           ),
           Expanded(
             child: switch (categories) {
-              AsyncLoading<Categories>() => _createSkeletonList(),
-              AsyncData<Categories>(:final value) => _createList(value),
-              AsyncError<Categories>(:final error) => _createErrorInfo(error),
+              AsyncLoading<Categories>() => const _CategoriesSkeletonList(),
+              AsyncData<Categories>(:final value) => _CategoriesList(value),
+              AsyncError<Categories>(:final error) => _CategoriesErrorMessage(
+                error,
+              ),
             },
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _createList(Categories categories) {
+class _CategoriesList extends StatelessWidget {
+  final Categories categories;
+
+  const _CategoriesList(this.categories);
+
+  @override
+  Widget build(BuildContext context) {
     if (categories.items.isEmpty) {
       return const Center(child: Text('No categories'));
     }
     return ListView.separated(
-      padding: const EdgeInsets.all(sizeMd),
+      padding: const EdgeInsets.all(dims.sizeMd),
       itemBuilder: (BuildContext context, int index) {
         return CategoryTile(categories.items.elementAt(index));
       },
-      separatorBuilder: _createSeparator,
+      separatorBuilder: (BuildContext context, int index) {
+        return const SizedBox(height: dims.sizeSm);
+      },
       itemCount: categories.items.length,
     );
   }
+}
 
-  Widget _createSkeletonList() {
+class _CategoriesSkeletonList extends StatelessWidget {
+  const _CategoriesSkeletonList();
+
+  @override
+  Widget build(BuildContext context) {
     return Skeletonizer(
       child: ListView.separated(
-        padding: const EdgeInsets.all(sizeMd),
+        padding: const EdgeInsets.all(dims.sizeMd),
         itemBuilder: (BuildContext context, int index) {
           return const CategoryTileBase(id: null, name: 'This is a skeleton');
         },
-        separatorBuilder: _createSeparator,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox(height: dims.sizeSm);
+        },
         itemCount: 15,
       ),
     );
   }
+}
 
-  Widget _createSeparator(BuildContext context, int index) {
-    return const SizedBox(height: sizeMd);
-  }
+class _CategoriesErrorMessage extends StatelessWidget {
+  final Object error;
 
-  Widget _createErrorInfo(Object error) {
+  const _CategoriesErrorMessage(this.error);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(child: Text('Error occured\n$error'));
   }
 }

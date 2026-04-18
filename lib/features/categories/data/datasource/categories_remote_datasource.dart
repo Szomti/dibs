@@ -1,6 +1,5 @@
 import 'package:dibs/core/network/remote_datasource.dart';
-import 'package:dibs/core/network/urls.dart';
-import 'package:dibs/features/authentication/authentication.dart';
+import 'package:dibs/core/network/urls.dart' as urls;
 import 'package:dibs/features/categories/data/dto/categories_dto.dart';
 import 'package:dio/dio.dart';
 
@@ -10,7 +9,7 @@ final class CategoriesRemoteDatasource extends RemoteDatasource {
   Future<CategoriesDto> getCategories() async {
     try {
       final response = await dio.get<Map<String, Object?>>(
-        categoriesPath,
+        urls.categoriesPath,
         options: jsonOptions,
       );
       final jsonObject = response.data;

@@ -1,4 +1,4 @@
-import 'package:dibs/core/constants/app_dimensions.dart';
+import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +11,9 @@ class RegisterForm extends ConsumerStatefulWidget {
 }
 
 class _RegisterFormState extends ConsumerState<RegisterForm> {
-  final _borderRadius = const BorderRadius.all(Radius.circular(defaultRadius));
+  static const _cardShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(dims.defaultRadius)),
+  );
   final _confirmPasswordController = TextEditingController();
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
@@ -29,41 +31,52 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    final registerState = ref.watch(registerProvider);
+    final register = ref.watch(registerProvider);
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+      shape: _cardShape,
       child: Padding(
-        padding: const EdgeInsets.all(paddingMd),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              NameField(!registerState.isLoading, _nameController),
-              const SizedBox(height: sizeMd),
-              EmailField(!registerState.isLoading, _emailController),
-              const SizedBox(height: sizeMd),
-              PasswordField(!registerState.isLoading, _passwordController),
-              const SizedBox(height: sizeMd),
-              ConfirmPasswordField(
-                enabled: !registerState.isLoading,
-                fieldController: _confirmPasswordController,
-                passwordController: _passwordController,
-              ),
-              const SizedBox(height: sizeMd),
-              _createRegisterBtn(!registerState.isLoading),
-            ],
-          ),
-        ),
+        padding: const EdgeInsets.all(dims.sizeMd),
+        child: switch (register) {
+          AsyncLoading<User?>() => const AuthCircularLoading(),
+          AsyncData<User?>() => _createForm(),
+          AsyncError<User?>(:final error) => _createForm('$error'),
+        },
       ),
     );
   }
 
-  Widget _createRegisterBtn(bool enabled) {
+  Widget _createForm([String? error]) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          NameField(_nameController),
+          const SizedBox(height: dims.sizeMd),
+          EmailField(_emailController),
+          const SizedBox(height: dims.sizeMd),
+          PasswordField(_passwordController),
+          const SizedBox(height: dims.sizeMd),
+          ConfirmPasswordField(
+            fieldController: _confirmPasswordController,
+            passwordController: _passwordController,
+          ),
+          const SizedBox(height: dims.sizeMd),
+          _createRegisterBtn(),
+          if (error != null) ...[
+            const SizedBox(height: dims.sizeMd),
+            Text(error),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _createRegisterBtn() {
     return Row(
       children: [
         Expanded(
           child: FilledButton(
-            onPressed: enabled ? () async => _onRegisterPressed(ref) : null,
+            onPressed: () async => _onRegisterPressed(ref),
             child: const Text('Register'),
           ),
         ),

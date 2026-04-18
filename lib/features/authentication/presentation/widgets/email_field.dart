@@ -4,14 +4,12 @@ import '../../../../shared/widgets/custom_text_form_field.dart';
 
 class EmailField extends StatelessWidget {
   final TextEditingController controller;
-  final bool enabled;
 
-  const EmailField(this.enabled, this.controller, {super.key});
+  const EmailField(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      enabled: enabled,
       labelText: 'Email',
       controller: controller,
       validator: (String? value) {
