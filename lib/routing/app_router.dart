@@ -1,4 +1,5 @@
 import 'package:dibs/features/authentication/authentication.dart';
+import 'package:dibs/features/categories/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -17,11 +18,14 @@ final authChangeNotifierProvider = Provider<AuthChangeNotifier>((ref) {
   return AuthChangeNotifier(ref.read(userRepositoryProvider).userStream);
 });
 
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
+
 final appRouterProvider = Provider<GoRouter>((ref) {
   final authNotifier = ref.read(authChangeNotifierProvider);
   final repo = ref.read(userRepositoryProvider);
 
   return GoRouter(
+    navigatorKey: _rootNavigatorKey,
     initialLocation: '/',
     refreshListenable: authNotifier,
     redirect: (context, state) async {
@@ -30,7 +34,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final isOnAuth = state.matchedLocation.startsWith('/auth');
       final isOnLoading = state.matchedLocation == '/';
 
-      if (isLoggedIn && (isOnAuth || isOnLoading)) return '/app/locations';
+      if (isLoggedIn && (isOnAuth || isOnLoading)) return '/app/categories';
       if (!isLoggedIn && !isOnAuth) return '/auth/login';
       return null;
     },
@@ -43,16 +47,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/app/locations',
-                builder: (_, _) => const LocationsPage(),
+                path: '/app/categories',
+                builder: (_, _) => const CategoriesPage(),
+                routes: [
+                  GoRoute(
+                    path: ':categoryId',
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (_, state) => LocationsPage(
+                      categoryId: int.parse(
+                        state.pathParameters['categoryId']!,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
+          // TODO: Actual reservations screen
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/app/locations',
-                builder: (_, _) => const LocationsPage(),
+                path: '/app/reservations',
+                builder: (_, _) => const CategoriesPage(),
               ),
             ],
           ),

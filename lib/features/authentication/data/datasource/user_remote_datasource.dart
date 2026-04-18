@@ -1,30 +1,43 @@
 import 'package:dibs/features/authentication/data/dto/login_dto.dart';
 import 'package:dibs/features/authentication/data/dto/register_dto.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/network/remote_datasource.dart';
-import '../dto/user_dto.dart';
+import '../../../../core/network/urls.dart';
+import '../dto/user_response_dto.dart';
 
 final class UserRemoteDatasource extends RemoteDatasource {
-  final _tempDelay = const Duration(milliseconds: 500);
+  UserRemoteDatasource(super.dio);
 
-  UserRemoteDatasource();
-
-  Future<UserDto> login(LoginDto loginDto) async {
-    // final response = await dio.post<Map<String, Object?>>('<server>');
-    // final jsonObject = response.data;
-    // if (jsonObject == null) throw Exception('for later');
-    // return UserDto.fromJson(jsonObject);
-    // TODO: Finish when endpoint is available
-    await Future.delayed(_tempDelay);
-    return UserDto.fromJson({
-      'username': 'Tester',
-      'email': 'test@example.com',
-      'token': 'TEMP_TOKEN',
-    });
+  Future<UserResponseDto> login(LoginDto loginDto) async {
+    try {
+      final response = await dio.post<Map<String, Object?>>(
+        loginPath,
+        data: loginDto.toJson(),
+        options: jsonOptions,
+      );
+      final jsonObject = response.data;
+      if (jsonObject == null) throw Exception('Received null from response');
+      return UserResponseDto.fromJson(jsonObject);
+    } on DioException catch (e) {
+      // TODO: Custom exceptions
+      rethrow;
+    }
   }
 
-  Future<void> register(RegisterDto registerDto) async {
-    await Future.delayed(_tempDelay);
-    // TODO: Finish when endpoint is available
+  Future<UserResponseDto> register(RegisterDto registerDto) async {
+    try {
+      final response = await dio.post<Map<String, Object?>>(
+        registerPath,
+        data: registerDto.toJson(),
+        options: jsonOptions,
+      );
+      final jsonObject = response.data;
+      if (jsonObject == null) throw Exception('Received null from response');
+      return UserResponseDto.fromJson(jsonObject);
+    } on DioException catch (e) {
+      // TODO: Custom exceptions
+      rethrow;
+    }
   }
 }

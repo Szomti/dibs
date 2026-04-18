@@ -3,9 +3,10 @@ import 'package:dibs/features/locations/data/dto/location_dto.dart';
 class LocationsDto {
   static const _itemsKey = 'items';
 
-  final Set<LocationDto> items;
+  final List<LocationDto> items;
 
-  LocationsDto._(Iterable<LocationDto> items) : items = Set.unmodifiable(items);
+  LocationsDto._(Iterable<LocationDto> items)
+    : items = List.unmodifiable(items);
 
   factory LocationsDto.fromJson(Map<String, Object?> jsonObject) {
     final locations = <LocationDto>[];

@@ -2,7 +2,6 @@ import 'package:dibs/core/constants/app_dimensions.dart';
 import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({super.key});
@@ -31,7 +30,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     final registerState = ref.watch(registerProvider);
-    _onStateChange();
     return Card(
       shape: RoundedRectangleBorder(borderRadius: _borderRadius),
       child: Padding(
@@ -73,14 +71,6 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     );
   }
 
-  void _onStateChange() {
-    ref.listen(registerProvider, (prev, next) {
-      if (next.value == true) {
-        context.go('/auth/login');
-      }
-    });
-  }
-
   Future<void> _onRegisterPressed(WidgetRef ref) async {
     final formState = _formKey.currentState;
     if (formState == null || !formState.validate()) return;
@@ -90,6 +80,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
           name: _nameController.text,
           email: _emailController.text,
           password: _passwordController.text,
+          confirmPassword: _confirmPasswordController.text,
         );
   }
 }

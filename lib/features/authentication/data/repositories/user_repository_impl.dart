@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dibs/core/auth/auth_session.dart';
 import 'package:dibs/features/authentication/authentication.dart';
 import 'package:dibs/features/authentication/data/datasource/user_local_datasource.dart';
 import 'package:dibs/features/authentication/data/datasource/user_remote_datasource.dart';
@@ -7,13 +8,14 @@ import 'package:dibs/features/authentication/data/dto/login_dto.dart';
 import 'package:dibs/features/authentication/data/dto/register_dto.dart';
 import 'package:dibs/features/authentication/data/mappers/user_mapper.dart';
 
-import '../dto/user_dto.dart';
-
 class UserRepositoryImpl extends UserRepository {
   final _localDatasource = UserLocalDatasource();
-  final _remoteDatasource = UserRemoteDatasource();
   final _userController = StreamController<User?>.broadcast();
+  final UserRemoteDatasource _remoteDatasource;
+  final AuthSession _session;
   User? _cache;
+
+  UserRepositoryImpl(this._session, this._remoteDatasource);
 
   @override
   Stream<User?> get userStream => _userController.stream;
@@ -22,7 +24,7 @@ class UserRepositoryImpl extends UserRepository {
   Future<User?> getUser() async {
     if (_cache != null) return _cache;
     final userDto = await _localDatasource.read();
-    _setCache(userDto);
+    _setCache(userDto?.toEntity());
     return _cache;
   }
 
@@ -31,23 +33,37 @@ class UserRepositoryImpl extends UserRepository {
     final userDto = await _remoteDatasource.login(
       LoginDto(email: email, password: password),
     );
-    await _localDatasource.write(userDto);
-    _setCache(userDto);
+    final user = userDto.toEntity();
+    await _localDatasource.write(user.toLocalDto());
+    _setCache(user);
     return _cache!;
   }
 
   @override
-  Future<bool> register(String name, String email, String password) async {
-    await _remoteDatasource.register(
-      RegisterDto(name: name, email: email, password: password),
+  Future<User> register(
+    String name,
+    String email,
+    String password,
+    String confirmPassword,
+  ) async {
+    final userDto = await _remoteDatasource.register(
+      RegisterDto(
+        name: name,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      ),
     );
-    return true;
+    final user = userDto.toEntity();
+    await _localDatasource.write(user.toLocalDto());
+    _setCache(user);
+    return _cache!;
   }
 
-  void _setCache(UserDto? userDto) {
-    final newUser = userDto?.toEntity();
+  void _setCache(User? newUser) {
     if (newUser == _cache) return;
     _cache = newUser;
+    _session.token = _cache?.token;
     _userController.add(_cache);
   }
 }

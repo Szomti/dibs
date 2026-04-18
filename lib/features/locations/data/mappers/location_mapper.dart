@@ -6,10 +6,15 @@ extension LocationDtoMapper on LocationDto {
     return Location(
       id: id,
       name: name,
-      address: address,
       city: city,
       postalCode: postalCode,
       country: country,
+      street: street,
+      buildingNumber: buildingNumber,
+      apartmentNumber: apartmentNumber,
+      district: district,
+      state: state,
+      additionalInfo: additionalInfo,
     );
   }
 }

@@ -9,28 +9,26 @@ class NavigationShellPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: navigationShell,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: navigationShell.currentIndex,
-          onDestinationSelected: (selectedIndex) {
-            navigationShell.goBranch(
-              selectedIndex,
-              initialLocation: selectedIndex == navigationShell.currentIndex,
-            );
-          },
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Symbols.cards_stack_rounded),
-              label: 'Locations',
-            ),
-            NavigationDestination(
-              icon: Icon(Symbols.bookmarks_rounded),
-              label: 'Reservations',
-            ),
-          ],
-        ),
+    return Scaffold(
+      body: SafeArea(child: navigationShell),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: (selectedIndex) {
+          navigationShell.goBranch(
+            selectedIndex,
+            initialLocation: selectedIndex == navigationShell.currentIndex,
+          );
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Symbols.cards_stack_rounded),
+            label: 'Categories',
+          ),
+          NavigationDestination(
+            icon: Icon(Symbols.bookmarks_rounded),
+            label: 'Reservations',
+          ),
+        ],
       ),
     );
   }
