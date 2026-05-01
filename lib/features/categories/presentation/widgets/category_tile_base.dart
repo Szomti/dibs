@@ -5,6 +5,12 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../../core/constants/app_dimensions.dart' as dims;
 
 class CategoryTileBase extends StatelessWidget {
+  static const _tooltipMargin = EdgeInsets.symmetric(horizontal: dims.sizeMd);
+  static const _contentPadding = EdgeInsets.symmetric(
+    horizontal: dims.sizeMd,
+    vertical: dims.sizeSm,
+  );
+
   final int? id;
   final String name;
   final String? description;
@@ -28,7 +34,7 @@ class CategoryTileBase extends StatelessWidget {
 
   Widget _createContentWithTooltip(BuildContext context) {
     return Tooltip(
-      margin: const EdgeInsets.symmetric(horizontal: dims.sizeMd),
+      margin: _tooltipMargin,
       message: description,
       child: _createContent(context),
     );
@@ -38,10 +44,7 @@ class CategoryTileBase extends StatelessWidget {
     return InkWell(
       onTap: id != null ? () => context.go('/app/categories/$id') : null,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: dims.sizeMd,
-          vertical: dims.sizeSm,
-        ),
+        padding: _contentPadding,
         child: Row(
           children: [
             Expanded(child: Row(children: [Text(name)])),
