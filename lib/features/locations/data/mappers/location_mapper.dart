@@ -9,6 +9,7 @@ extension LocationDtoMapper on LocationDto {
       city: city,
       postalCode: postalCode,
       country: country,
+      countryCode: countryCode,
       street: street,
       buildingNumber: buildingNumber,
       apartmentNumber: apartmentNumber,

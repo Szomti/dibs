@@ -19,7 +19,7 @@ final class UserRemoteDatasource extends RemoteDatasource {
       final jsonObject = response.data;
       if (jsonObject == null) throw Exception('Received null from response');
       return UserResponseDto.fromJson(jsonObject);
-    } on DioException catch (e) {
+    } on DioException {
       // TODO: Custom exceptions
       rethrow;
     }
@@ -31,7 +31,7 @@ final class UserRemoteDatasource extends RemoteDatasource {
         urls.logoutPath,
         options: jsonOptions,
       );
-    } on DioException catch (e) {
+    } on DioException {
       // TODO: Custom exceptions
       rethrow;
     }
@@ -47,7 +47,7 @@ final class UserRemoteDatasource extends RemoteDatasource {
       final jsonObject = response.data;
       if (jsonObject == null) throw Exception('Received null from response');
       return UserResponseDto.fromJson(jsonObject);
-    } on DioException catch (e) {
+    } on DioException {
       // TODO: Custom exceptions
       rethrow;
     }

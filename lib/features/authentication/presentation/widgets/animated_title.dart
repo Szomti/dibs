@@ -33,13 +33,13 @@ class _AnimatedTitleState extends State<AnimatedTitle>
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: _animation,
-      child: const Text(
-        'Dibs!',
-        style: TextStyle(
-          fontSize: 56,
-          overflow: TextOverflow.visible,
+    return TickerMode(
+      enabled: mounted,
+      child: RotationTransition(
+        turns: _animation,
+        child: Text(
+          'Dibs!',
+          style: Theme.of(context).textTheme.displayLarge,
         ),
       ),
     );

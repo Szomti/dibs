@@ -41,7 +41,7 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<void> logout() async {
-    await _remoteDatasource.logout();
+    _remoteDatasource.logout().ignore();
     _setCache(null);
     await _localDatasource.delete();
   }

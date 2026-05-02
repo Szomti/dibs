@@ -15,7 +15,7 @@ final class CategoriesRemoteDatasource extends RemoteDatasource {
       final jsonObject = response.data;
       if (jsonObject == null) throw Exception('Received null from response');
       return CategoriesDto.fromJson(jsonObject);
-    } on DioException catch (e) {
+    } on DioException {
       // TODO: Custom exceptions
       rethrow;
     }

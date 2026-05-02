@@ -1,5 +1,5 @@
-import 'package:dibs/features/locations/domain/entities/locations.dart';
+import '../entities/location.dart';
 
 abstract class LocationsRepository {
-  Future<Locations?> getLocations();
+  Future<List<Location>> getLocations({required int categoryId, required int page});
 }

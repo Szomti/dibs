@@ -2,6 +2,7 @@ import 'package:dibs/core/file_system/local_datasource.dart';
 
 import '../dto/locations_dto.dart';
 
+// TODO: Use later or delete local datasource entirely
 class LocationsLocalDatasource extends LocalDatasource<LocationsDto> {
   LocationsLocalDatasource() : super(fileName: 'locations');
 

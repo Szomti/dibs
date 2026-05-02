@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../authentication/presentation/providers/logout_provider.dart';
 
 class LogoutButton extends ConsumerWidget {
-  static const _snackBarTextStyle = TextStyle(color: Colors.white70);
-
   const LogoutButton({super.key});
 
   @override
@@ -19,6 +17,7 @@ class LogoutButton extends ConsumerWidget {
           child: FilledButton(
             style: FilledButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(context).colorScheme.onError,
             ),
             onPressed: logout.isLoading
                 ? null
@@ -62,16 +61,26 @@ class LogoutButton extends ConsumerWidget {
         break;
       case AsyncData<void>():
         scaffoldMessenger.showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.green,
-            content: Text('Logged out', style: _snackBarTextStyle),
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+            content: Text(
+              'Logged out',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiaryContainer,
+              ),
+            ),
           ),
         );
       case AsyncError<void>():
         scaffoldMessenger.showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.red,
-            content: Text('Error occured', style: _snackBarTextStyle),
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.errorContainer,
+            content: Text(
+              'Error occured',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onErrorContainer,
+              ),
+            ),
           ),
         );
     }

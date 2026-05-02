@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dibs/core/file_system/app_file_system.dart';
-import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 
 abstract class LocalDatasource<T extends Object> {
   final String fileName;
@@ -37,7 +37,7 @@ abstract class LocalDatasource<T extends Object> {
       if (content.isEmpty) return null;
       return json.decode(content);
     } catch (error, stackTrace) {
-      debugPrint('$error\n$stackTrace');
+      Logger().f('File system error', error: error, stackTrace: stackTrace);
       return null;
     }
   }

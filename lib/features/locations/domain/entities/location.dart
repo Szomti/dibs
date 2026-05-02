@@ -12,6 +12,7 @@ final class Location {
   final String? district;
   final String? state;
   final String country;
+  final String countryCode;
   final String? additionalInfo;
 
   const Location({
@@ -25,6 +26,7 @@ final class Location {
     required this.district,
     required this.state,
     required this.country,
+    required this.countryCode,
     required this.additionalInfo,
   });
 

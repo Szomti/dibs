@@ -1,7 +1,7 @@
 import 'package:dibs/features/locations/data/dto/location_dto.dart';
 
 class LocationsDto {
-  static const _itemsKey = 'items';
+  static const _dataKey = 'data';
 
   final List<LocationDto> items;
 
@@ -10,7 +10,7 @@ class LocationsDto {
 
   factory LocationsDto.fromJson(Map<String, Object?> jsonObject) {
     final locations = <LocationDto>[];
-    final array = jsonObject[_itemsKey] as Iterable;
+    final array = jsonObject[_dataKey] as Iterable;
     for (final jsonObject in array.whereType<Map<String, Object?>>()) {
       locations.add(LocationDto.fromJson(jsonObject));
     }
@@ -19,7 +19,7 @@ class LocationsDto {
 
   Map<String, Object?> toJson() {
     return {
-      _itemsKey: [for (final item in items) item.toJson()],
+      _dataKey: [for (final item in items) item.toJson()],
     };
   }
 }

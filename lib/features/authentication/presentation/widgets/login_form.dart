@@ -96,13 +96,13 @@ class _LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Expanded(
           child: Text(
             'Good to see you!',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 24),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
       ],

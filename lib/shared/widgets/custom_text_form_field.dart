@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   static const _border = OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(dims.sizeXl)),
+    borderRadius: BorderRadius.all(Radius.circular(dims.defaultRadius)),
   );
 
   final TextEditingController? controller;

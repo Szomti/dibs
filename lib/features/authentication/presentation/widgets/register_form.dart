@@ -76,7 +76,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
       children: [
         Expanded(
           child: FilledButton(
-            onPressed: () async => _onRegisterPressed(ref),
+            onPressed: () => _onRegisterPressed(ref),
             child: const Text('Register'),
           ),
         ),
@@ -84,10 +84,10 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     );
   }
 
-  Future<void> _onRegisterPressed(WidgetRef ref) async {
+  void _onRegisterPressed(WidgetRef ref) {
     final formState = _formKey.currentState;
     if (formState == null || !formState.validate()) return;
-    await ref
+    ref
         .read(registerProvider.notifier)
         .register(
           name: _nameController.text,

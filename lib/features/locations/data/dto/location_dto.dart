@@ -5,8 +5,9 @@ class LocationDto {
   static const _stateKey = 'state';
   static const _streetKey = 'street';
   static const _districtKey = 'district';
-  static const _postalCodeKey = 'postalCode';
+  static const _postalCodeKey = 'postal_code';
   static const _countryKey = 'country';
+  static const _countryCodeKey = 'country_code';
   static const _buildingNumberKey = 'building_number';
   static const _apartmentNumberKey = 'apartment_number';
   static const _additionalInfoKey = 'additional_info';
@@ -21,6 +22,7 @@ class LocationDto {
   final String? district;
   final String? state;
   final String country;
+  final String countryCode;
   final String? additionalInfo;
 
   LocationDto._({
@@ -34,6 +36,7 @@ class LocationDto {
     required this.district,
     required this.state,
     required this.country,
+    required this.countryCode,
     required this.additionalInfo,
   });
 
@@ -47,6 +50,7 @@ class LocationDto {
       city: jsonObject[_cityKey] as String,
       postalCode: jsonObject[_postalCodeKey] as String,
       country: jsonObject[_countryKey] as String,
+      countryCode: jsonObject[_countryCodeKey] as String,
       buildingNumber: jsonObject[_buildingNumberKey] as String,
       apartmentNumber: jsonObject[_apartmentNumberKey] as String?,
       additionalInfo: jsonObject[_additionalInfoKey] as String?,
@@ -63,6 +67,7 @@ class LocationDto {
       _cityKey: city,
       _postalCodeKey: postalCode,
       _countryKey: country,
+      _countryCodeKey: countryCode,
       _buildingNumberKey: buildingNumber,
       _apartmentNumberKey: apartmentNumber,
       _additionalInfoKey: additionalInfo,

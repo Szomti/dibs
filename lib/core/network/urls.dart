@@ -12,3 +12,7 @@ const logoutPath = '$_auth/logout';
 const registerPath = '$_auth/register';
 
 const categoriesPath = '$_api/categories';
+
+String locationsPath(int categoryId) {
+  return '$categoriesPath/$categoryId/locations';
+}

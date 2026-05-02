@@ -8,7 +8,7 @@ class CategoryTileBase extends StatelessWidget {
   static const _tooltipMargin = EdgeInsets.symmetric(horizontal: dims.sizeMd);
   static const _contentPadding = EdgeInsets.symmetric(
     horizontal: dims.sizeMd,
-    vertical: dims.sizeSm,
+    vertical: dims.sizeMd,
   );
 
   final int? id;
@@ -48,12 +48,7 @@ class CategoryTileBase extends StatelessWidget {
         child: Row(
           children: [
             Expanded(child: Row(children: [Text(name)])),
-            IconButton(
-              icon: const Icon(Symbols.arrow_forward_ios),
-              onPressed: id != null
-                  ? () => context.go('/app/categories/$id')
-                  : null,
-            ),
+            const Icon(Symbols.arrow_forward_ios),
           ],
         ),
       ),
