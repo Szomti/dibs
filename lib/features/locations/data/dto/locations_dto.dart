@@ -1,6 +1,9 @@
-import 'package:dibs/features/locations/data/dto/location_dto.dart';
+import 'package:meta/meta.dart';
 
-class LocationsDto {
+import 'location_dto.dart';
+
+@immutable
+final class LocationsDto {
   static const _dataKey = 'data';
 
   final List<LocationDto> items;

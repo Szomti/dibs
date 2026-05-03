@@ -1,7 +1,6 @@
-import 'package:dibs/features/authentication/authentication.dart';
-import 'package:dibs/features/authentication/data/dto/user_response_dto.dart';
-
+import '../../authentication.dart';
 import '../dto/user_local_dto.dart';
+import '../dto/user_response_dto.dart';
 
 extension UserLocalDtoMapper on UserLocalDto {
   User toEntity() {

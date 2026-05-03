@@ -1,4 +1,7 @@
-class LocationDto {
+import 'package:meta/meta.dart';
+
+@immutable
+final class LocationDto {
   static const _idKey = 'id';
   static const _nameKey = 'name';
   static const _cityKey = 'city';
@@ -25,7 +28,7 @@ class LocationDto {
   final String countryCode;
   final String? additionalInfo;
 
-  LocationDto._({
+  const LocationDto._({
     required this.id,
     required this.name,
     required this.street,
@@ -73,4 +76,14 @@ class LocationDto {
       _additionalInfoKey: additionalInfo,
     };
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LocationDto &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

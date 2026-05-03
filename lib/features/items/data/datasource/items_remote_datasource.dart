@@ -1,8 +1,8 @@
-import 'package:dibs/core/network/remote_datasource.dart';
-import 'package:dibs/features/items/data/dto/items_dto.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../core/network/remote_datasource.dart';
 import '../../../../core/network/urls.dart' as urls;
+import '../dto/items_dto.dart';
 
 final class ItemsRemoteDatasource extends RemoteDatasource {
   static const _perPageKey = 'per_page';

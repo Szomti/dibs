@@ -1,11 +1,11 @@
-import 'package:dibs/features/authentication/authentication.dart';
-import 'package:dibs/features/categories/categories.dart';
-import 'package:dibs/features/items/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/authentication/authentication.dart';
 import '../features/authentication/presentation/providers/user_repository_provider.dart';
+import '../features/categories/categories.dart';
+import '../features/items/items.dart';
 import '../features/locations/locations.dart';
 import '../features/navigation_shell/navigation_shell.dart';
 import '../features/settings/settings.dart';

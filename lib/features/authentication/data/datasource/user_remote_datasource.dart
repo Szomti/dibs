@@ -1,9 +1,9 @@
-import 'package:dibs/features/authentication/data/dto/login_dto.dart';
-import 'package:dibs/features/authentication/data/dto/register_dto.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/network/remote_datasource.dart';
 import '../../../../core/network/urls.dart' as urls;
+import '../dto/login_dto.dart';
+import '../dto/register_dto.dart';
 import '../dto/user_response_dto.dart';
 
 final class UserRemoteDatasource extends RemoteDatasource {

@@ -1,7 +1,8 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
-import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/constants/app_dimensions.dart' as dims;
+import '../../authentication.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key});

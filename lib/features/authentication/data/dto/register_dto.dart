@@ -1,4 +1,7 @@
-class RegisterDto {
+import 'package:meta/meta.dart';
+
+@immutable
+final class RegisterDto {
   static const _nameKey = 'name';
   static const _emailKey = 'email';
   static const _passwordKey = 'password';
@@ -8,7 +11,7 @@ class RegisterDto {
   final String password;
   final String confirmPassword;
 
-  RegisterDto({
+  const RegisterDto({
     required this.name,
     required this.email,
     required this.password,
@@ -23,4 +26,17 @@ class RegisterDto {
       _confirmPasswordKey: confirmPassword,
     };
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RegisterDto &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          email == other.email &&
+          password == other.password &&
+          confirmPassword == other.confirmPassword;
+
+  @override
+  int get hashCode => Object.hash(name, email, password, confirmPassword);
 }

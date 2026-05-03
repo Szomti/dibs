@@ -1,6 +1,7 @@
-import 'package:dibs/features/authentication/authentication.dart';
-import 'package:dibs/features/authentication/presentation/providers/user_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../authentication.dart';
+import 'user_repository_provider.dart';
 
 final loginProvider = AsyncNotifierProvider.autoDispose<LoginNotifier, User?>(
   LoginNotifier.new,

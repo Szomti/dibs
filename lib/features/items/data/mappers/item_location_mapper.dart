@@ -1,5 +1,5 @@
-import 'package:dibs/features/items/data/dto/item_location_dto.dart';
-import 'package:dibs/features/items/domain/entities/item_location.dart';
+import '../../domain/entities/item_location.dart';
+import '../dto/item_location_dto.dart';
 
 extension ItemLocationDtoMapper on ItemLocationDto {
   ItemLocation toEntity() {

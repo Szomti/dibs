@@ -32,7 +32,8 @@ final class RequestLoggerInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     final res = err.response;
-    final message = ((res?.data['message'] as String?) ?? '');
+    final data = res?.data;
+    final message = data is Map ? data['message'] as String? ?? '' : '';
     final errorType = '(${err.type.name})';
     _logger.w(
       '${res?.statusCode ?? 'no-response'} '

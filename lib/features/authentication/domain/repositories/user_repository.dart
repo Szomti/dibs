@@ -1,4 +1,4 @@
-import 'package:dibs/features/authentication/authentication.dart';
+import '../../authentication.dart';
 
 abstract class UserRepository {
   Stream<User?> get userStream;

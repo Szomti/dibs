@@ -1,6 +1,6 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../settings.dart';
 
 class SettingsPage extends StatelessWidget {

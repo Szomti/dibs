@@ -1,5 +1,6 @@
-import 'package:dibs/features/items/domain/entities/item.dart';
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
+
+import 'item.dart';
 
 @immutable
 final class Items {

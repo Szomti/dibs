@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:dibs/features/authentication/presentation/providers/user_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/user.dart';
+import 'user_repository_provider.dart';
 
 final registerProvider =
     AsyncNotifierProvider.autoDispose<RegisterNotifier, User?>(

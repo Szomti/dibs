@@ -1,11 +1,11 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
-import 'package:dibs/features/categories/presentation/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../categories.dart';
 import '../../domain/entities/categories.dart';
+import '../providers/categories_provider.dart';
 
 class CategoriesPage extends ConsumerWidget {
   static const _padding = EdgeInsets.symmetric(

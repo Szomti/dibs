@@ -1,9 +1,10 @@
-import 'package:dibs/features/locations/domain/entities/location.dart';
-import 'package:dibs/features/locations/locations.dart';
-import 'package:dibs/features/locations/presentation/providers/locations_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+import '../../domain/entities/location.dart';
+import '../../locations.dart';
+import '../providers/locations_repository_provider.dart';
 
 class LocationsPage extends ConsumerStatefulWidget {
   final int categoryId;

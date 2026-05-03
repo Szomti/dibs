@@ -1,7 +1,7 @@
-import 'package:dibs/features/items/data/dto/item_dto.dart';
-import 'package:dibs/features/items/data/mappers/item_category_mapper.dart';
-import 'package:dibs/features/items/data/mappers/item_location_mapper.dart';
-import 'package:dibs/features/items/domain/entities/item.dart';
+import '../../domain/entities/item.dart';
+import '../dto/item_dto.dart';
+import 'item_category_mapper.dart';
+import 'item_location_mapper.dart';
 
 extension ItemDtoMapper on ItemDto {
   Item toEntity() {

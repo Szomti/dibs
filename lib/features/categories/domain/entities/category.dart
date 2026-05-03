@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' hide Category;
+import 'package:meta/meta.dart';
 
 @immutable
 final class Category {

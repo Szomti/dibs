@@ -1,5 +1,8 @@
-import 'package:dibs/features/items/data/dto/item_dto.dart';
+import 'package:meta/meta.dart';
 
+import 'item_dto.dart';
+
+@immutable
 final class ItemsDto {
   static const _dataKey = 'data';
 

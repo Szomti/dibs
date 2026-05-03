@@ -1,5 +1,6 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:flutter/material.dart';
+
+import '../../core/constants/app_dimensions.dart' as dims;
 
 class CustomTextField extends StatelessWidget {
   static const _border = OutlineInputBorder(

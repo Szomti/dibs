@@ -1,8 +1,7 @@
-import 'package:dibs/features/locations/data/datasource/locations_remote_datasource.dart';
-import 'package:dibs/features/locations/data/mappers/locations_mapper.dart';
-import 'package:dibs/features/locations/domain/repositories/locations_repository.dart';
-
 import '../../domain/entities/location.dart';
+import '../../domain/repositories/locations_repository.dart';
+import '../datasource/locations_remote_datasource.dart';
+import '../mappers/locations_mapper.dart';
 
 class LocationsRepositoryImpl extends LocationsRepository {
   final LocationsRemoteDatasource remoteDatasource;

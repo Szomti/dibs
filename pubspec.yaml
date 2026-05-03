@@ -20,6 +20,7 @@ dependencies:
   infinite_scroll_pagination: ^5.1.1
   logger: ^2.7.0
   material_symbols_icons: ^4.2928.1
+  meta: ^1.17.0
   package_info_plus: ^10.1.0
   path_provider: ^2.1.5
   skeletonizer: ^2.1.3

@@ -1,5 +1,6 @@
-import 'package:dibs/core/auth/auth_session.dart';
 import 'package:dio/dio.dart';
+
+import '../auth/auth_session.dart';
 
 final class AuthInterceptor extends Interceptor {
   final AuthSession _session;

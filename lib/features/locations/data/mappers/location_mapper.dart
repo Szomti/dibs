@@ -1,5 +1,5 @@
-import 'package:dibs/features/locations/data/dto/location_dto.dart';
-import 'package:dibs/features/locations/domain/entities/location.dart';
+import '../../domain/entities/location.dart';
+import '../dto/location_dto.dart';
 
 extension LocationDtoMapper on LocationDto {
   Location toEntity() {

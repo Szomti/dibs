@@ -1,10 +1,11 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
-import 'package:dibs/features/authentication/domain/entities/user.dart';
-import 'package:dibs/features/authentication/presentation/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../core/constants/app_dimensions.dart' as dims;
+import '../../../authentication/domain/entities/user.dart';
+import '../../../authentication/presentation/providers/user_provider.dart';
 
 class UserInfo extends ConsumerWidget {
   static const _namePlaceholder = 'Username';

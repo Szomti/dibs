@@ -1,5 +1,6 @@
-import 'package:dibs/features/categories/categories.dart';
 import 'package:flutter/material.dart';
+
+import '../../categories.dart';
 import '../../domain/entities/category.dart';
 
 class CategoryTile extends StatelessWidget {

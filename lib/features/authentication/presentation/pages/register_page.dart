@@ -1,8 +1,8 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
-import 'package:dibs/features/authentication/presentation/widgets/register_form.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../authentication.dart';
+import '../widgets/register_form.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

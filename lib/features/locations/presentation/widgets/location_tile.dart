@@ -1,10 +1,10 @@
 import 'package:country_flags/country_flags.dart';
-import 'package:dibs/features/locations/domain/entities/location.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
+import '../../domain/entities/location.dart';
 
 class LocationTile extends StatelessWidget {
   static const _countryFlagTheme = ImageTheme(

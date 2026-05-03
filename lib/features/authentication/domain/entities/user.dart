@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 final class User {
@@ -6,11 +6,7 @@ final class User {
   final String email;
   final String token;
 
-  const User({
-    required this.name,
-    required this.email,
-    required this.token,
-  });
+  const User({required this.name, required this.email, required this.token});
 
   @override
   bool operator ==(Object other) =>

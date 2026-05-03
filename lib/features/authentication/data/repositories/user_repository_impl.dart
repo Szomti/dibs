@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:dibs/core/auth/auth_session.dart';
-import 'package:dibs/features/authentication/authentication.dart';
-import 'package:dibs/features/authentication/data/datasource/user_local_datasource.dart';
-import 'package:dibs/features/authentication/data/datasource/user_remote_datasource.dart';
-import 'package:dibs/features/authentication/data/dto/login_dto.dart';
-import 'package:dibs/features/authentication/data/dto/register_dto.dart';
-import 'package:dibs/features/authentication/data/mappers/user_mapper.dart';
+import '../../../../core/auth/auth_session.dart';
+import '../../authentication.dart';
+import '../datasource/user_local_datasource.dart';
+import '../datasource/user_remote_datasource.dart';
+import '../dto/login_dto.dart';
+import '../dto/register_dto.dart';
+import '../mappers/user_mapper.dart';
 
 class UserRepositoryImpl extends UserRepository {
   final _localDatasource = UserLocalDatasource();

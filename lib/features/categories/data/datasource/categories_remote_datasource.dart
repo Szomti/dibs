@@ -1,7 +1,8 @@
-import 'package:dibs/core/network/remote_datasource.dart';
-import 'package:dibs/core/network/urls.dart' as urls;
-import 'package:dibs/features/categories/data/dto/categories_dto.dart';
 import 'package:dio/dio.dart';
+
+import '../../../../core/network/remote_datasource.dart';
+import '../../../../core/network/urls.dart' as urls;
+import '../dto/categories_dto.dart';
 
 final class CategoriesRemoteDatasource extends RemoteDatasource {
   CategoriesRemoteDatasource(super.dio);

@@ -1,8 +1,8 @@
-import 'package:dibs/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
+import '../../authentication.dart';
 import '../widgets/login_form.dart';
 
 class LoginPage extends StatelessWidget {

@@ -1,10 +1,10 @@
-import 'package:dibs/features/items/domain/entities/item.dart';
-import 'package:dibs/features/items/presentation/providers/items_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../domain/entities/item.dart';
 import '../../items.dart';
+import '../providers/items_repository_provider.dart';
 
 class ItemsPage extends ConsumerStatefulWidget {
   final int categoryId;

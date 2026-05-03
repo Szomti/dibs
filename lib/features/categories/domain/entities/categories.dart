@@ -1,5 +1,6 @@
-import 'package:dibs/features/categories/domain/entities/category.dart';
-import 'package:flutter/foundation.dart' hide Category;
+import 'package:meta/meta.dart';
+
+import 'category.dart';
 
 @immutable
 final class Categories {

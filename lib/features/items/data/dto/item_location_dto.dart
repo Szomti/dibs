@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 final class ItemLocationDto {
@@ -16,4 +16,14 @@ final class ItemLocationDto {
       name: jsonObject[_nameKey] as String,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ItemLocationDto &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

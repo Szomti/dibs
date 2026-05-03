@@ -1,9 +1,12 @@
-import 'package:dibs/features/items/data/mappers/items_mapper.dart';
-import 'package:dibs/features/items/domain/entities/item.dart';
-import 'package:dibs/features/items/domain/repositories/items_repository.dart';
+import '../../domain/entities/item.dart';
+import '../../domain/repositories/items_repository.dart';
+import '../datasource/items_remote_datasource.dart';
+import '../mappers/items_mapper.dart';
 
 final class ItemsRepositoryImpl extends ItemsRepository {
-  ItemsRepositoryImpl(super.remoteDatasource);
+  final ItemsRemoteDatasource remoteDatasource;
+
+  ItemsRepositoryImpl(this.remoteDatasource);
 
   @override
   Future<List<Item>> getItems({

@@ -1,4 +1,4 @@
-import 'package:dibs/features/categories/domain/entities/categories.dart';
+import '../entities/categories.dart';
 
 abstract class CategoriesRepository {
   Future<Categories> getCategories();

@@ -1,5 +1,8 @@
-import 'package:dibs/features/categories/data/dto/category_dto.dart';
+import 'package:meta/meta.dart';
 
+import 'category_dto.dart';
+
+@immutable
 final class CategoriesDto {
   static const _dataKey = 'data';
 

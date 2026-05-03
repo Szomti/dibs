@@ -1,6 +1,7 @@
-import 'package:dibs/core/constants/app_dimensions.dart' as dims;
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import '../../../../core/constants/app_dimensions.dart' as dims;
 
 class AboutButton extends StatelessWidget {
   const AboutButton({super.key});

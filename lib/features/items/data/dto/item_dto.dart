@@ -1,6 +1,9 @@
+import 'package:meta/meta.dart';
+
 import 'item_category_dto.dart';
 import 'item_location_dto.dart';
 
+@immutable
 final class ItemDto {
   static const _idKey = 'id';
   static const _nameKey = 'name';
@@ -20,7 +23,7 @@ final class ItemDto {
   final ItemLocationDto location;
   final bool isAvailable;
 
-  ItemDto({
+  const ItemDto({
     required this.id,
     required this.name,
     required this.description,
@@ -48,4 +51,12 @@ final class ItemDto {
       isAvailable: jsonObject[_isAvailableKey] as bool,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ItemDto && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

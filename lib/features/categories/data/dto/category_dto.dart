@@ -1,3 +1,6 @@
+import 'package:meta/meta.dart';
+
+@immutable
 final class CategoryDto {
   static const _idKey = 'id';
   static const _nameKey = 'name';
@@ -7,7 +10,7 @@ final class CategoryDto {
   final String name;
   final String? description;
 
-  CategoryDto._({
+  const CategoryDto._({
     required this.id,
     required this.name,
     required this.description,
@@ -20,4 +23,14 @@ final class CategoryDto {
       description: jsonObject[_descriptionKey] as String?,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CategoryDto &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

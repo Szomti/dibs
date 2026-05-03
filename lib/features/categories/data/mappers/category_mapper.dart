@@ -1,5 +1,5 @@
-import 'package:dibs/features/categories/data/dto/category_dto.dart';
-import 'package:dibs/features/categories/domain/entities/category.dart';
+import '../../domain/entities/category.dart';
+import '../dto/category_dto.dart';
 
 extension CategoryDtoMapper on CategoryDto {
   Category toEntity() {
