@@ -9,12 +9,11 @@ class LocationsDto {
     : items = List.unmodifiable(items);
 
   factory LocationsDto.fromJson(Map<String, Object?> jsonObject) {
-    final locations = <LocationDto>[];
-    final array = jsonObject[_dataKey] as Iterable;
-    for (final jsonObject in array.whereType<Map<String, Object?>>()) {
-      locations.add(LocationDto.fromJson(jsonObject));
-    }
-    return LocationsDto._(locations);
+    final jsonArray = jsonObject[_dataKey] as Iterable;
+    return LocationsDto._([
+      for (final jsonObject in jsonArray.whereType<Map<String, Object?>>())
+        LocationDto.fromJson(jsonObject),
+    ]);
   }
 
   Map<String, Object?> toJson() {

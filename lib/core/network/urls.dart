@@ -16,3 +16,7 @@ const categoriesPath = '$_api/categories';
 String locationsPath(int categoryId) {
   return '$categoriesPath/$categoryId/locations';
 }
+
+String itemsPath(int categoryId, int locationId) {
+  return '${locationsPath(categoryId)}/$locationId/items';
+}

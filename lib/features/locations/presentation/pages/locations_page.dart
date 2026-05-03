@@ -41,7 +41,10 @@ class _LocationsPageState extends ConsumerState<LocationsPage> {
             fetchNextPage: fetchNextPage,
             builderDelegate: PagedChildBuilderDelegate(
               itemBuilder: (context, item, index) {
-                return LocationTile(location: item);
+                return LocationTile(
+                  categoryId: widget.categoryId,
+                  location: item,
+                );
               },
             ),
           );

@@ -1,5 +1,6 @@
 import 'package:dibs/features/authentication/authentication.dart';
 import 'package:dibs/features/categories/categories.dart';
+import 'package:dibs/features/items/items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -52,13 +53,27 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 builder: (_, _) => const CategoriesPage(),
                 routes: [
                   GoRoute(
-                    path: ':categoryId',
+                    path: ':categoryId/locations',
                     parentNavigatorKey: _rootNavigatorKey,
                     builder: (_, state) => LocationsPage(
                       categoryId: int.parse(
                         state.pathParameters['categoryId']!,
                       ),
                     ),
+                    routes: [
+                      GoRoute(
+                        path: ':locationId/items',
+                        parentNavigatorKey: _rootNavigatorKey,
+                        builder: (_, state) => ItemsPage(
+                          categoryId: int.parse(
+                            state.pathParameters['categoryId']!,
+                          ),
+                          locationId: int.parse(
+                            state.pathParameters['locationId']!,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

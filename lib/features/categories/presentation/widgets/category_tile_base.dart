@@ -42,7 +42,7 @@ class CategoryTileBase extends StatelessWidget {
 
   Widget _createContent(BuildContext context) {
     return InkWell(
-      onTap: id != null ? () => context.go('/app/categories/$id') : null,
+      onTap: id != null ? () => context.go('/app/categories/$id/locations') : null,
       child: Padding(
         padding: _contentPadding,
         child: Row(

@@ -1,4 +1,3 @@
-import 'package:dibs/features/locations/data/datasource/locations_local_datasource.dart';
 import 'package:dibs/features/locations/data/datasource/locations_remote_datasource.dart';
 import 'package:dibs/features/locations/data/mappers/locations_mapper.dart';
 import 'package:dibs/features/locations/domain/repositories/locations_repository.dart';
@@ -6,13 +5,9 @@ import 'package:dibs/features/locations/domain/repositories/locations_repository
 import '../../domain/entities/location.dart';
 
 class LocationsRepositoryImpl extends LocationsRepository {
-  final LocationsLocalDatasource localDatasource;
   final LocationsRemoteDatasource remoteDatasource;
 
-  LocationsRepositoryImpl({
-    required this.localDatasource,
-    required this.remoteDatasource,
-  });
+  LocationsRepositoryImpl({required this.remoteDatasource});
 
   @override
   Future<List<Location>> getLocations({

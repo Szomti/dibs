@@ -4,7 +4,12 @@ import 'dart:io';
 import 'package:dibs/core/file_system/app_file_system.dart';
 import 'package:logger/logger.dart';
 
+import '../logging/soft_wrap_pretty_printer.dart';
+
 abstract class LocalDatasource<T extends Object> {
+  static final _logger = Logger(
+    printer: SoftWrapPrettyPrinter(dateTimeFormat: DateTimeFormat.onlyTime),
+  );
   final String fileName;
   final String fileExtension;
 
@@ -37,7 +42,7 @@ abstract class LocalDatasource<T extends Object> {
       if (content.isEmpty) return null;
       return json.decode(content);
     } catch (error, stackTrace) {
-      Logger().f('File system error', error: error, stackTrace: stackTrace);
+      _logger.f('File system error', error: error, stackTrace: stackTrace);
       return null;
     }
   }
