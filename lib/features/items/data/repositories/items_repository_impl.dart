@@ -5,6 +5,7 @@ import '../mappers/items_mapper.dart';
 
 final class ItemsRepositoryImpl extends ItemsRepository {
   final ItemsRemoteDatasource remoteDatasource;
+  final Map<int, Item> _cache = {};
 
   ItemsRepositoryImpl(this.remoteDatasource);
 
@@ -19,6 +20,16 @@ final class ItemsRepositoryImpl extends ItemsRepository {
       locationId: locationId,
       page: page,
     );
-    return dto.toEntity().values.toList();
+    final items = dto.toEntity().values;
+    for (final item in items) {
+      _cache[item.id] = item;
+    }
+    return items.toList();
   }
+
+  @override
+  Item? getByIdOrNull(int id) => _cache[id];
+
+  @override
+  Item getByIdOrThrow(int id) => _cache[id]!;
 }

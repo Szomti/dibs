@@ -12,10 +12,10 @@ final class LocationsDto {
     : items = List.unmodifiable(items);
 
   factory LocationsDto.fromJson(Map<String, Object?> jsonObject) {
-    final jsonArray = jsonObject[_dataKey] as Iterable;
+    final jsonArray = jsonObject[_dataKey] as Iterable<Object?>;
     return LocationsDto._([
-      for (final jsonObject in jsonArray.whereType<Map<String, Object?>>())
-        LocationDto.fromJson(jsonObject),
+      for (final entry in jsonArray.whereType<Map<String, Object?>>())
+        LocationDto.fromJson(entry),
     ]);
   }
 

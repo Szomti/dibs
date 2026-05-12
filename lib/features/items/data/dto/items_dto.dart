@@ -11,7 +11,7 @@ final class ItemsDto {
   ItemsDto._(Iterable<ItemDto> values) : values = List.unmodifiable(values);
 
   factory ItemsDto.fromJson(Map<String, Object?> jsonObject) {
-    final jsonArray = jsonObject[_dataKey] as Iterable;
+    final jsonArray = jsonObject[_dataKey] as Iterable<Object?>;
     return ItemsDto._([
       for (final json in jsonArray.whereType<Map<String, Object?>>())
         ItemDto.fromJson(json),

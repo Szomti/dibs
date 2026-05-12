@@ -13,7 +13,7 @@ final class CategoriesDto {
 
   factory CategoriesDto.fromJson(Map<String, Object?> jsonObject) {
     final categories = <CategoryDto>[];
-    final array = jsonObject[_dataKey] as Iterable;
+    final array = jsonObject[_dataKey] as Iterable<Object?>;
     for (final jsonObject in array.whereType<Map<String, Object?>>()) {
       categories.add(CategoryDto.fromJson(jsonObject));
     }

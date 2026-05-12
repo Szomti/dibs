@@ -72,6 +72,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                             state.pathParameters['locationId']!,
                           ),
                         ),
+                        routes: [
+                          GoRoute(
+                            path: ':itemId',
+                            parentNavigatorKey: _rootNavigatorKey,
+                            builder: (_, state) =>
+                                ItemPage(itemId: int.parse(
+                                  state.pathParameters['itemId']!,
+                                )),
+                          ),
+                        ],
                       ),
                     ],
                   ),

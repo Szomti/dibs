@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../categories/presentation/providers/categories_provider.dart';
 import '../../domain/entities/location.dart';
 import '../../locations.dart';
 import '../providers/locations_repository_provider.dart';
@@ -32,8 +33,15 @@ class _LocationsPageState extends ConsumerState<LocationsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final category = ref.watch(categoryProvider(widget.categoryId));
     return Scaffold(
-      appBar: AppBar(title: const Text('Locations')),
+      appBar: AppBar(
+        title: Text(
+          category?.name ?? 'Locations',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
       body: PagingListener(
         controller: _pagingController,
         builder: (context, state, fetchNextPage) {

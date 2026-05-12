@@ -20,3 +20,7 @@ String locationsPath(int categoryId) {
 String itemsPath(int categoryId, int locationId) {
   return '${locationsPath(categoryId)}/$locationId/items';
 }
+
+String itemUpcomingReservationsPath(String qrCode) {
+  return '$_api/items/$qrCode/reservations';
+}

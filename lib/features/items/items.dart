@@ -1,2 +1,9 @@
+export 'presentation/pages/item_page.dart';
 export 'presentation/pages/items_page.dart';
+export 'presentation/widgets/item_reservation_date_selection.dart';
+export 'presentation/widgets/item_reservation_description.dart';
+export 'presentation/widgets/item_reservation_list.dart';
+export 'presentation/widgets/item_reservation_list_error.dart';
+export 'presentation/widgets/item_reservation_list_skeleton.dart';
+export 'presentation/widgets/item_reservation_tile.dart';
 export 'presentation/widgets/item_tile.dart';

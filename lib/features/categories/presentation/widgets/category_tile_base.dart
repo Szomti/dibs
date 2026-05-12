@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
 
+// TODO: Try to use ListTile
 class CategoryTileBase extends StatelessWidget {
   static const _tooltipMargin = EdgeInsets.symmetric(horizontal: dims.sizeMd);
   static const _contentPadding = EdgeInsets.symmetric(
@@ -42,7 +43,9 @@ class CategoryTileBase extends StatelessWidget {
 
   Widget _createContent(BuildContext context) {
     return InkWell(
-      onTap: id != null ? () => context.go('/app/categories/$id/locations') : null,
+      onTap: id != null
+          ? () => context.go('/app/categories/$id/locations')
+          : null,
       child: Padding(
         padding: _contentPadding,
         child: Row(

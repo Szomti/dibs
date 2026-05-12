@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../locations/presentation/providers/locations_repository_provider.dart';
 import '../../domain/entities/item.dart';
 import '../../items.dart';
 import '../providers/items_repository_provider.dart';
@@ -41,8 +42,18 @@ class _ItemsPageState extends ConsumerState<ItemsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Make family provider
+    final location = ref
+        .watch(locationsRepositoryProvider)
+        .getByIdOrNull(widget.locationId);
     return Scaffold(
-      appBar: AppBar(title: const Text('Items')),
+      appBar: AppBar(
+        title: Text(
+          location?.name ?? 'Items',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
       body: PagingListener(
         controller: _pagingController,
         builder: (context, state, fetchNextPage) {
@@ -51,7 +62,11 @@ class _ItemsPageState extends ConsumerState<ItemsPage> {
             fetchNextPage: fetchNextPage,
             builderDelegate: PagedChildBuilderDelegate(
               itemBuilder: (context, item, index) {
-                return ItemTile(item);
+                return ItemTile(
+                  categoryId: widget.categoryId,
+                  locationId: widget.locationId,
+                  item: item,
+                );
               },
             ),
           );

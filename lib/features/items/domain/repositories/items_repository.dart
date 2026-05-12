@@ -6,4 +6,7 @@ abstract class ItemsRepository {
     required int locationId,
     required int page,
   });
+
+  Item? getByIdOrNull(int id);
+  Item getByIdOrThrow(int id);
 }
