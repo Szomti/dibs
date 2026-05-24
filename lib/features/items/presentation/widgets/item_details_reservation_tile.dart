@@ -5,14 +5,14 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../../reservations/domain/entities/upcoming_item_reservation.dart';
 
-class ItemReservationTile extends StatelessWidget {
+class ItemDetailsReservationTile extends StatelessWidget {
   static const _cardMargin = EdgeInsets.only(bottom: dims.sizeMd);
   static const _cardPadding = EdgeInsets.all(dims.sizeMd);
   static const _contentPadding = EdgeInsets.symmetric(horizontal: dims.sizeMd);
 
   final UpcomingItemReservation reservation;
 
-  const ItemReservationTile(this.reservation, {super.key});
+  const ItemDetailsReservationTile(this.reservation, {super.key});
 
   @override
   Widget build(BuildContext context) {

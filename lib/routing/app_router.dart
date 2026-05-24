@@ -8,6 +8,7 @@ import '../features/categories/categories.dart';
 import '../features/items/items.dart';
 import '../features/locations/locations.dart';
 import '../features/navigation_shell/navigation_shell.dart';
+import '../features/reservations/reservation.dart';
 import '../features/settings/settings.dart';
 
 class AuthChangeNotifier extends ChangeNotifier {
@@ -76,10 +77,23 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                           GoRoute(
                             path: ':itemId',
                             parentNavigatorKey: _rootNavigatorKey,
-                            builder: (_, state) =>
-                                ItemPage(itemId: int.parse(
-                                  state.pathParameters['itemId']!,
-                                )),
+                            builder: (_, state) => ItemDetailsPage(
+                              route: state.uri,
+                              itemId: int.parse(
+                                state.pathParameters['itemId']!,
+                              ),
+                            ),
+                            routes: [
+                              GoRoute(
+                                path: 'reservation',
+                                parentNavigatorKey: _rootNavigatorKey,
+                                builder: (_, state) => ItemReservationPage(
+                                  itemId: int.parse(
+                                    state.pathParameters['itemId']!,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

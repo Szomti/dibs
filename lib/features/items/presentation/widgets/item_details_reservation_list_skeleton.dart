@@ -6,15 +6,15 @@ import '../../../reservations/domain/entities/upcoming_item_reservation.dart';
 import '../../../reservations/domain/entities/upcoming_item_reservations.dart';
 import '../../items.dart';
 
-class ItemReservationListSkeleton extends StatelessWidget {
+class ItemDetailsReservationListSkeleton extends StatelessWidget {
   static final _now = DateTime.now();
 
-  const ItemReservationListSkeleton({super.key});
+  const ItemDetailsReservationListSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      child: ItemReservationList(
+      child: ItemDetailsReservationList(
         UpcomingItemReservations([
           UpcomingItemReservation(
             id: 1,

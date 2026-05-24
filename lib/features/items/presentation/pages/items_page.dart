@@ -5,7 +5,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../locations/presentation/providers/locations_repository_provider.dart';
 import '../../domain/entities/item.dart';
 import '../../items.dart';
-import '../providers/items_repository_provider.dart';
 
 class ItemsPage extends ConsumerStatefulWidget {
   final int categoryId;

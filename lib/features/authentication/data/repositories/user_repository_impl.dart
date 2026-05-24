@@ -15,7 +15,9 @@ class UserRepositoryImpl extends UserRepository {
   final AuthSession _session;
   User? _cache;
 
-  UserRepositoryImpl(this._session, this._remoteDatasource);
+  UserRepositoryImpl(this._session, this._remoteDatasource) {
+    _session.onExpired.listen((_) => _clearLocal());
+  }
 
   @override
   Stream<User?> get userStream => _userController.stream;
@@ -42,6 +44,10 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<void> logout() async {
     _remoteDatasource.logout().ignore();
+    _session.expire();
+  }
+
+  Future<void> _clearLocal() async {
     _setCache(null);
     await _localDatasource.delete();
   }

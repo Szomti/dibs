@@ -5,7 +5,7 @@ import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../../reservations/domain/entities/upcoming_item_reservations.dart';
 import '../../items.dart';
 
-class ItemReservationList extends StatelessWidget {
+class ItemDetailsReservationList extends StatelessWidget {
   static const _verticalPadding = EdgeInsets.symmetric(vertical: dims.sizeMd);
   static const _horizontalPadding = EdgeInsets.symmetric(
     horizontal: dims.sizeMd,
@@ -13,7 +13,7 @@ class ItemReservationList extends StatelessWidget {
 
   final UpcomingItemReservations reservations;
 
-  const ItemReservationList(this.reservations, {super.key});
+  const ItemDetailsReservationList(this.reservations, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ItemReservationList extends StatelessWidget {
                 padding: _verticalPadding,
                 itemCount: reservations.items.length,
                 itemBuilder: (context, index) {
-                  return ItemReservationTile(
+                  return ItemDetailsReservationTile(
                     reservations.items.elementAt(index),
                   );
                 },

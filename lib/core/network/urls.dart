@@ -11,6 +11,8 @@ const loginPath = '$_auth/login';
 const logoutPath = '$_auth/logout';
 const registerPath = '$_auth/register';
 
+const createReservation = '$_api/reservations';
+
 const categoriesPath = '$_api/categories';
 
 String locationsPath(int categoryId) {
@@ -21,6 +23,6 @@ String itemsPath(int categoryId, int locationId) {
   return '${locationsPath(categoryId)}/$locationId/items';
 }
 
-String itemUpcomingReservationsPath(String qrCode) {
-  return '$_api/items/$qrCode/reservations';
+String itemUpcomingReservationsPath(int itemId) {
+  return '$_api/items/id/$itemId/reservations';
 }

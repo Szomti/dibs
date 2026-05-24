@@ -2,16 +2,15 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/network/remote_datasource.dart';
 import '../../../../core/network/urls.dart' as urls;
-import '../../../items/domain/entities/item.dart';
 import '../dto/upcoming_item_reservations_dto.dart';
 
 final class UpcomingItemReservationsRemoteDatasource extends RemoteDatasource {
   UpcomingItemReservationsRemoteDatasource(super.dio);
 
-  Future<UpcomingItemReservationsDto> getUpcoming(Item item) async {
+  Future<UpcomingItemReservationsDto> getUpcoming(int itemId) async {
     try {
       final response = await dio.get(
-        urls.itemUpcomingReservationsPath(item.qrCode),
+        urls.itemUpcomingReservationsPath(itemId),
         options: jsonOptions,
       );
       final jsonObject = response.data;

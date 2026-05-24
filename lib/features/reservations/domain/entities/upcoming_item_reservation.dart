@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/extensions/duration_extension.dart';
 import 'reservation_status.dart';
+import 'reservation_time_range.dart';
 
 @immutable
 final class UpcomingItemReservation
@@ -13,6 +14,9 @@ final class UpcomingItemReservation
 
   String get durationInfo =>
       reservedUntil.difference(reservedAt).toShortString();
+
+  ReservationTimeRange get timeRange =>
+      ReservationTimeRange(start: reservedAt, end: reservedUntil);
 
   const UpcomingItemReservation({
     required this.id,

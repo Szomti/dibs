@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
-import '../../../reservations/presentation/providers/upcoming_item_reservations_provider.dart';
+import '../../../reservations/reservation.dart';
 import '../../domain/entities/item.dart';
 
-class ItemReservationListError extends ConsumerWidget {
+class ItemDetailsReservationListError extends ConsumerWidget {
   static const _verticalPadding = EdgeInsets.symmetric(vertical: dims.sizeMd);
   static const _horizontalPadding = EdgeInsets.symmetric(
     horizontal: dims.sizeMd,
@@ -14,7 +14,7 @@ class ItemReservationListError extends ConsumerWidget {
 
   final Item item;
 
-  const ItemReservationListError(this.item, {super.key});
+  const ItemDetailsReservationListError(this.item, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,7 +45,7 @@ class ItemReservationListError extends ConsumerWidget {
                   ),
                   IconButton(
                     onPressed: () => ref.invalidate(
-                      upcomingItemReservationsProvider(item),
+                      upcomingItemReservationsProvider(item.id),
                       asReload: true,
                     ),
                     icon: const Icon(Symbols.refresh, size: dims.sizeXl),

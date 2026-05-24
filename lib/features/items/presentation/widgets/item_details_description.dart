@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
 
-class ItemReservationDescription extends StatelessWidget {
+class ItemDetailsDescription extends StatelessWidget {
   static const _padding = EdgeInsets.all(dims.sizeMd);
   static const _margin = EdgeInsets.only(bottom: dims.sizeMd);
 
   final String? description;
 
-  const ItemReservationDescription(this.description, {super.key});
+  const ItemDetailsDescription(this.description, {super.key});
 
   @override
   Widget build(BuildContext context) {

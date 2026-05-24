@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final itemSelectedDateProvider =
-    NotifierProvider.autoDispose<_ItemSelectedDateNotifier, DateTime>(
-      _ItemSelectedDateNotifier.new,
+final itemDetailsSelectedDateProvider =
+    NotifierProvider.autoDispose<_ItemDetailsSelectedDateNotifier, DateTime>(
+      _ItemDetailsSelectedDateNotifier.new,
     );
 
-class _ItemSelectedDateNotifier extends Notifier<DateTime> {
+class _ItemDetailsSelectedDateNotifier extends Notifier<DateTime> {
   @override
   DateTime build() {
     final now = DateTime.now();
