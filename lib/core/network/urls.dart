@@ -11,7 +11,7 @@ const loginPath = '$_auth/login';
 const logoutPath = '$_auth/logout';
 const registerPath = '$_auth/register';
 
-const createReservation = '$_api/reservations';
+const reservations = '$_api/reservations';
 
 const categoriesPath = '$_api/categories';
 

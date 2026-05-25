@@ -103,12 +103,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          // TODO: Actual reservations screen
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/app/reservations',
-                builder: (_, _) => const CategoriesPage(),
+                builder: (_, _) => const UserReservationsPage(),
               ),
             ],
           ),

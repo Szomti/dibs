@@ -92,13 +92,11 @@ class _ItemReservationPageState extends ConsumerState<ItemReservationPage> {
     );
   }
 
-  void _onCreation(
-    AsyncValue<void>? prev,
-    AsyncValue<void>? next,
-  ) {
+  void _onCreation(AsyncValue<void>? prev, AsyncValue<void>? next) {
     next?.whenOrNull(
       data: (data) {
         ref.invalidate(upcomingItemReservationsProvider(widget.itemId));
+        ref.read(userReservationsPagingControllerProvider).refresh();
         context.go('/app/reservations');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

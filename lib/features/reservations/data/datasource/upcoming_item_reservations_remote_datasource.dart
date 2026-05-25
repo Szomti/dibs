@@ -9,7 +9,7 @@ final class UpcomingItemReservationsRemoteDatasource extends RemoteDatasource {
 
   Future<UpcomingItemReservationsDto> getUpcoming(int itemId) async {
     try {
-      final response = await dio.get(
+      final response = await dio.get<Map<String, Object?>>(
         urls.itemUpcomingReservationsPath(itemId),
         options: jsonOptions,
       );

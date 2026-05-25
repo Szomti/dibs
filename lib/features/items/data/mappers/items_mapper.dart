@@ -4,6 +4,6 @@ import 'item_mapper.dart';
 
 extension ItemsDtoMapper on ItemsDto {
   Items toEntity() {
-    return Items([for (final value in values) value.toEntity()]);
+    return Items(values.map((value) => value.toEntity()));
   }
 }

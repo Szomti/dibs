@@ -4,8 +4,6 @@ import 'upcoming_item_reservation_mapper.dart';
 
 extension UpcomingItemReservationsDtoMapper on UpcomingItemReservationsDto {
   UpcomingItemReservations toEntity() {
-    return UpcomingItemReservations([
-      for (final item in items) item.toEntity(),
-    ]);
+    return UpcomingItemReservations(items.map((item) => item.toEntity()));
   }
 }

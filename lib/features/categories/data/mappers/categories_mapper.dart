@@ -4,6 +4,6 @@ import 'category_mapper.dart';
 
 extension CategoriesDtoMapper on CategoriesDto {
   Categories toEntity() {
-    return Categories([for (final item in items) item.toEntity()]);
+    return Categories(items.map((item) => item.toEntity()));
   }
 }

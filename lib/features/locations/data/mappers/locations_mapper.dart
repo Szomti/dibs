@@ -4,6 +4,6 @@ import 'location_mapper.dart';
 
 extension LocationsDtoMapper on LocationsDto {
   Locations toEntity() {
-    return Locations([for (final item in items) item.toEntity()]);
+    return Locations(items.map((item) => item.toEntity()));
   }
 }

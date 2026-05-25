@@ -8,11 +8,6 @@ import '../../domain/entities/categories.dart';
 import '../providers/categories_provider.dart';
 
 class CategoriesPage extends ConsumerWidget {
-  static const _padding = EdgeInsets.symmetric(
-    vertical: dims.sizeXs,
-    horizontal: dims.sizeMd,
-  );
-
   const CategoriesPage({super.key});
 
   @override
@@ -21,14 +16,6 @@ class CategoriesPage extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: _padding,
-            child: SearchBar(
-              onTapOutside: (_) =>
-                  FocusManager.instance.primaryFocus?.unfocus(),
-              hintText: 'Search categories',
-            ),
-          ),
           Expanded(
             child: switch (categories) {
               AsyncLoading<Categories>() => const _CategoriesSkeletonList(),
