@@ -42,4 +42,32 @@ class ReservationRemoteDatasource extends RemoteDatasource {
       rethrow;
     }
   }
+
+  Future<void> completeReservation(int reservationId) async {
+    try {
+      final response = await dio.put<Map<String, Object?>>(
+        urls.completeReservation(reservationId),
+        options: jsonOptions,
+      );
+      final jsonObject = response.data;
+      if (jsonObject == null) throw Exception('Received null from response');
+    } on DioException {
+      // TODO: Custom exceptions
+      rethrow;
+    }
+  }
+
+  Future<void> activateReservation(int reservationId) async {
+    try {
+      final response = await dio.put<Map<String, Object?>>(
+        urls.activateReservation(reservationId),
+        options: jsonOptions,
+      );
+      final jsonObject = response.data;
+      if (jsonObject == null) throw Exception('Received null from response');
+    } on DioException {
+      // TODO: Custom exceptions
+      rethrow;
+    }
+  }
 }

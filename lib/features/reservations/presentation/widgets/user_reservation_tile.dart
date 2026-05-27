@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../core/constants/app_dimensions.dart' as dims;
 import '../../domain/entities/user_reservation.dart';
+import '../../reservation.dart';
 
 class UserReservationTile extends StatelessWidget {
   static const _cardPadding = EdgeInsets.all(dims.sizeMd);
@@ -35,6 +36,14 @@ class UserReservationTile extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: dims.sizeSm),
+            Text(
+              reservation.status.name.toUpperCase(),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(height: dims.sizeMd),
             Row(
@@ -82,6 +91,7 @@ class UserReservationTile extends StatelessWidget {
                 ),
               ],
             ),
+            UserReservationActions(reservation),
           ],
         ),
       ),

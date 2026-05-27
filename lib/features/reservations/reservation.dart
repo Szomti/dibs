@@ -16,3 +16,4 @@ export 'presentation/widgets/item_reservation_duration_selection.dart';
 export 'presentation/widgets/item_reservation_start_buttons.dart';
 export 'presentation/widgets/item_reservation_time_of_date_selection.dart';
 export 'presentation/widgets/item_reservation_time_range.dart';
+export 'presentation/widgets/user_reservation_actions.dart';

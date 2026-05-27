@@ -26,3 +26,15 @@ String itemsPath(int categoryId, int locationId) {
 String itemUpcomingReservationsPath(int itemId) {
   return '$_api/items/id/$itemId/reservations';
 }
+
+String _reservation(int reservationId) {
+  return '$reservations/$reservationId';
+}
+
+String completeReservation(int reservationId) {
+  return '${_reservation(reservationId)}/complete';
+}
+
+String activateReservation(int reservationId) {
+  return '${_reservation(reservationId)}/activate';
+}

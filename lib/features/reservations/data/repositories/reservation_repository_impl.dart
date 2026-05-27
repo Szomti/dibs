@@ -19,4 +19,14 @@ class ReservationRepositoryImpl extends ReservationRepository {
     final dto = await remoteDatasource.getUserReservations(page);
     return dto.toEntity().items.toList();
   }
+
+  @override
+  Future<void> activateReservation(UserReservation reservation) async {
+    await remoteDatasource.activateReservation(reservation.id);
+  }
+
+  @override
+  Future<void> completeReservation(UserReservation reservation) async {
+    await remoteDatasource.completeReservation(reservation.id);
+  }
 }
